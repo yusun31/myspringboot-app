@@ -3,10 +3,23 @@ package com.example.myspringboot;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LambdaTest {
     @Test
+    public void iterable(){
+        List<User> users = Arrays.asList(new User("길동", 10), new User("철수", 9), new User("영희", 14));
+        for(User user: users) {
+            System.out.println("user = " + user);
+        }
+    }
+
+    @Test @Disabled
     public void runnable() throws Exception{
         // 1. MyRunnable Class
         Thread t1 = new Thread(new MyRunnable());
@@ -30,6 +43,7 @@ public class LambdaTest {
 
 @Getter @Setter
 @AllArgsConstructor // 생성자 쓰지 않아도 자동으로 만들어줌
+@ToString // User name&age 출력
 class User {
     private String name;
     private int age;
