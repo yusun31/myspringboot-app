@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class LambdaTest {
     @Test
@@ -17,6 +18,20 @@ public class LambdaTest {
         for(User user: users) {
             System.out.println("user = " + user);
         }
+
+        // 1. Anonymous Inner Class
+        users.forEach(new Consumer<User>() {
+            @Override
+            public void accept(User user) {
+                System.out.println("Anonymous inner class user = " + user);
+            }
+        });
+
+        // 2. lambda Expression
+        users.forEach(user -> System.out.println("lambda user = " + user));
+
+        // 3. Method Reference
+        users.forEach(System.out::println);
     }
 
     @Test @Disabled
@@ -25,7 +40,7 @@ public class LambdaTest {
         Thread t1 = new Thread(new MyRunnable());
         t1.start();
 
-        // 2. Annoymous Inner Class
+        // 2. Anonymous Inner Class
         Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
