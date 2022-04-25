@@ -1,6 +1,7 @@
 package com.example.myspringboot.repository;
 
 import com.example.myspringboot.entity.Account;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ public class AccountRepositoryTest {
     AccountRepository accountRepository;
 
     @Test
+    @Disabled
     public void crud() throws Exception {
         // 1. insert
         // Account 객체 생성
