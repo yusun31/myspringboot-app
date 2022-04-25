@@ -2,6 +2,7 @@ package com.example.myspringboot.controller;
 
 import com.example.myspringboot.entity.User;
 import com.example.myspringboot.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,18 @@ public class UserRestController {
         return userService.selectAllUser();
     }
 
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable Long id) {
+        return userService.selectUser(id);
+    }
 
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User userDetail) {
+        return userService.updateUser(id, userDetail);
+    }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id);
+    }
 }
