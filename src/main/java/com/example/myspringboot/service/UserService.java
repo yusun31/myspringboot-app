@@ -49,7 +49,7 @@ public class UserService {
     public ResponseEntity<?> deleteUser(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if(!optionalUser.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(id + "User Not Found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(id + " User Not Found");
         }
         User existUser = optionalUser.get();
         userRepository.delete(existUser);
