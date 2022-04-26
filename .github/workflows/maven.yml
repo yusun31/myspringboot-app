@@ -32,5 +32,5 @@ jobs:
         tags: boot
         registry: docker.io
         dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ secrets.yousun2286 }}
+        password: ${{ secrets.tnqls7791 }}
