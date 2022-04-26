@@ -28,7 +28,7 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: vega2k/springbootreactjs
+        image: yousun2286/springbootreactjs
         tags: boot
         registry: docker.io
         dockerfile: Dockerfile
