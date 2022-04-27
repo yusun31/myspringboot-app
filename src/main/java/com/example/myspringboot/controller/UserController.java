@@ -1,10 +1,13 @@
 package com.example.myspringboot.controller;
 
+import com.example.myspringboot.entity.User;
 import com.example.myspringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,6 +22,8 @@ public class UserController {
 
     @GetMapping("/index")
     public String userList(Model model) {
-        return "";
+        List<User> userList = userService.selectAllUser();
+        model.addAttribute("users", userList);
+        return "index";
     }
 }
