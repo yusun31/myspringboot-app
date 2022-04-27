@@ -4,6 +4,7 @@ import com.example.myspringboot.controller.form.UserForm;
 import com.example.myspringboot.entity.User;
 import com.example.myspringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
     private  final UserService userService;
 
@@ -57,7 +59,9 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         User user = userService.selectUser(id);
+        log.debug("User => {}", user);
         UserForm userForm = new UserForm();
+        log.debug("UserForm => {}", userForm);
         BeanUtils.copyProperties(user, userForm);
         //User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("userForm", userForm);
