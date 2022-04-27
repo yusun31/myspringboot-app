@@ -61,11 +61,25 @@ public class UserController {
         User user = userService.selectUser(id);
         log.debug("User => {}", user);
         UserForm userForm = new UserForm();
-        log.debug("UserForm => {}", userForm);
+        log.warn("UserForm => {}", userForm);
         BeanUtils.copyProperties(user, userForm);
         //User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("userForm", userForm);
         return "update-user";
     }
 
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable("id") long id, @Valid UserForm userForm, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            userForm.setId(id);
+            return "update-user";
+        }
+        log.debug("UserForm => {}", userForm);
+        User user = new User();
+        BeanUtils.copyProperties(userForm, user);
+        userService.insertUser(user);
+
+        model.addAttribute("users", userService.selectAllUser());
+        return "index";
+    }
 }
